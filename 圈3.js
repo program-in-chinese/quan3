@@ -12590,7 +12590,7 @@ const 圈3Lexer = require("./圈3Lexer.js")
 const 圈3Parser = require("./圈3Parser.js")
 const JSListener = require("./定制监听器.js").JSListener
 
-var input = "开始\n前进100\n结束";
+var input = document.getElementById('输入代码').value;
 var chars = new antlr4.InputStream(input)
 var lexer = new 圈3Lexer.圈3Lexer(chars)
 var tokens  = new antlr4.CommonTokenStream(lexer)
