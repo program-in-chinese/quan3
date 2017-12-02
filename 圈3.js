@@ -12557,7 +12557,6 @@ JSListener.prototype.constructor = JSListener;
 JSListener.prototype.enter程序 = function(ctx) {
   构图 = function() {
     新画布(720, 400);
-    //长方形(40, Date.now() % 500, 120, 40);
   }
 };
 
@@ -12575,8 +12574,11 @@ JSListener.prototype.exit前进 = function(ctx) {
     document.getElementById("spanId").innerHTML = t1 + ": " + t2;
 
     绘制 = function() {
-      var 偏移 = Date.now() % 500;
-      line(200, 200, 200, 帧序号() < 100 ? 200 - 帧序号() : 100);
+      var 前进距离 = parseInt(t2);
+
+      var 原点x = 200;
+      var 原点y = 300;
+      line(原点x, 原点y, 原点x, 帧序号() < 前进距离 ? 原点y - 帧序号() : 原点y - 前进距离);
     }
 };
 
