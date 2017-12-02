@@ -12554,7 +12554,12 @@ JSListener = function () {
 JSListener.prototype = Object.create(圈3Listener.prototype);
 JSListener.prototype.constructor = JSListener;
 
+var 序号 = 0;
+
 JSListener.prototype.enter程序 = function(ctx) {
+  序号 = 0;
+  // TODO: 不会被再次调用(应只需调用一次)
+  // https://p5js.org/reference/#/p5/setup
   构图 = function() {
     新画布(720, 400);
   }
@@ -12573,12 +12578,19 @@ JSListener.prototype.exit前进 = function(ctx) {
     var t2 = ctx.getChild(1).getText()
     document.getElementById("spanId").innerHTML = t1 + ": " + t2;
 
+    // TODO: 应该在exit程序时重新声明'绘制'方法.
     绘制 = function() {
+      background(255, 255, 255);
       var 前进距离 = parseInt(t2);
+      if (前进距离 > 150) {
+        return;
+      }
 
       var 原点x = 200;
       var 原点y = 300;
-      line(原点x, 原点y, 原点x, 帧序号() < 前进距离 ? 原点y - 帧序号() : 原点y - 前进距离);
+      line(原点x, 原点y,
+        原点x, 序号 < 前进距离 ? 原点y - 序号 : 原点y - 前进距离);
+      序号 ++;
     }
 };
 
@@ -12590,8 +12602,12 @@ const 圈3Lexer = require("./圈3Lexer.js")
 const 圈3Parser = require("./圈3Parser.js")
 const JSListener = require("./定制监听器.js").JSListener
 
-var input = document.getElementById('输入代码').value;
-var chars = new antlr4.InputStream(input)
+运行();
+
+// TODO: 改进-现为全局
+function 运行() {
+  var 代码 = document.getElementById('输入代码').value;
+var chars = new antlr4.InputStream(代码)
 var lexer = new 圈3Lexer.圈3Lexer(chars)
 var tokens  = new antlr4.CommonTokenStream(lexer)
 var parser = new 圈3Parser.圈3Parser(tokens)
@@ -12600,7 +12616,9 @@ var tree = parser.程序()
 
 var extractor = new JSListener()
 antlr4.tree.ParseTreeWalker.DEFAULT.walk(extractor, tree)
+}
 
+window.运行 = 运行;
 },{"./圈3Lexer.js":48,"./圈3Parser.js":50,"./定制监听器.js":51,"antlr4/index":42,"fs":53}],53:[function(require,module,exports){
 
 },{}]},{},[52]);
