@@ -13,7 +13,10 @@ JSListener.prototype = Object.create(圈3Listener.prototype);
 JSListener.prototype.constructor = JSListener;
 
 JSListener.prototype.enter程序 = function(ctx) {
-
+  构图 = function() {
+    新画布(720, 400);
+    //长方形(40, Date.now() % 500, 120, 40);
+  }
 };
 
 JSListener.prototype.exit程序 = function(ctx) {
@@ -28,6 +31,11 @@ JSListener.prototype.exit前进 = function(ctx) {
     var t1 = ctx.getChild(0).getText()
     var t2 = ctx.getChild(1).getText()
     document.getElementById("spanId").innerHTML = t1 + ": " + t2;
+
+    绘制 = function() {
+      var 偏移 = Date.now() % 500;
+      line(200, 200, 200, 帧序号() < 100 ? 200 - 帧序号() : 100);
+    }
 };
 
 exports.JSListener = JSListener;
