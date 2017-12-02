@@ -12572,6 +12572,7 @@ JSListener.prototype.exit前进 = function(ctx) {
     var t1 = ctx.getChild(0).getText()
     var t2 = ctx.getChild(1).getText()
     alert(t1 + ": " + t2);
+    document.getElementById("spanId").innerHTML = t1 + ": " + t2;
 };
 
 exports.JSListener = JSListener;

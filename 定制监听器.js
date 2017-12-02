@@ -12,8 +12,6 @@ JSListener = function () {
 JSListener.prototype = Object.create(圈3Listener.prototype);
 JSListener.prototype.constructor = JSListener;
 
-JSListener.tFileName = "test"
-
 JSListener.prototype.enter程序 = function(ctx) {
 
 };
@@ -29,7 +27,7 @@ JSListener.prototype.exit前进 = function(ctx) {
     // get the variable
     var t1 = ctx.getChild(0).getText()
     var t2 = ctx.getChild(1).getText()
-    alert(t1 + ": " + t2);
+    document.getElementById("spanId").innerHTML = t1 + ": " + t2;
 };
 
 exports.JSListener = JSListener;
