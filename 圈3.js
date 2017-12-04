@@ -12542,21 +12542,21 @@ exports.圈3Parser = 圈3Parser;
 },{"./圈3Listener":49,"antlr4/index":42}],51:[function(require,module,exports){
 var antlr4 = require('antlr4/index');
 const 圈3Listener = require('./圈3Listener.js').圈3Listener
-const print = console.log
 
-// include directly the implementation of the compiler
-
-JSListener = function () {
+定制监听器 = function () {
 	圈3Listener.call(this);
 	return this;
 }
 
-JSListener.prototype = Object.create(圈3Listener.prototype);
-JSListener.prototype.constructor = JSListener;
+定制监听器.prototype = Object.create(圈3Listener.prototype);
+定制监听器.prototype.constructor = 定制监听器;
 
+var 原点 = {x: 200, y: 200};
 var 序号 = 0;
+// 指令格式: 名称 (转向, 前进, 笔色等等); 参数 (转向角度, 前进长度等等); 
+var 指令序列 = [];
 
-JSListener.prototype.enter程序 = function(ctx) {
+定制监听器.prototype.enter程序 = function(ctx) {
   序号 = 0;
   // TODO: 不会被再次调用(应只需调用一次)
   // https://p5js.org/reference/#/p5/setup
@@ -12565,42 +12565,41 @@ JSListener.prototype.enter程序 = function(ctx) {
   }
 };
 
-JSListener.prototype.exit程序 = function(ctx) {
+定制监听器.prototype.exit程序 = function(ctx) {
+  绘制 = function() {
+    background(255, 255, 255);
 
-};
-
-JSListener.prototype.enter前进 = function(ctx) {
-};
-
-JSListener.prototype.exit前进 = function(ctx) {
-    // get the variable
-    var t1 = ctx.getChild(0).getText()
-    var t2 = ctx.getChild(1).getText()
-    document.getElementById("spanId").innerHTML = t1 + ": " + t2;
-
-    // TODO: 应该在exit程序时重新声明'绘制'方法.
-    绘制 = function() {
-      background(255, 255, 255);
-      var 前进距离 = parseInt(t2);
-      if (前进距离 > 150) {
-        return;
+    for(var i = 0; i < 指令序列.length; i++ ){
+      var 指令 = 指令序列[i];
+      var 指令名 = 指令.名称;
+      if (指令名 === "前进") {
+        var 前进距离 = 指令.参数;
+        line(原点.x, 原点.y,
+          原点.x, 序号 < 前进距离 ? 原点.y - 序号 : 原点.y - 前进距离);
       }
-
-      var 原点x = 200;
-      var 原点y = 300;
-      line(原点x, 原点y,
-        原点x, 序号 < 前进距离 ? 原点y - 序号 : 原点y - 前进距离);
-      序号 ++;
     }
+    
+    序号 ++;
+  }
 };
 
-exports.JSListener = JSListener;
+定制监听器.prototype.exit前进 = function(ctx) {
+  // get the variable
+  var t1 = ctx.getChild(0).getText()
+  var t2 = ctx.getChild(1).getText()
+  document.getElementById("spanId").innerHTML = t1 + ": " + t2;
+
+  指令序列.push({名称: "前进", 参数: parseInt(t2)});
+};
+
+
+exports.定制监听器 = 定制监听器;
 },{"./圈3Listener.js":49,"antlr4/index":42}],52:[function(require,module,exports){
 const antlr4 = require("antlr4/index")
 const fs = require("fs")
 const 圈3Lexer = require("./圈3Lexer.js")
 const 圈3Parser = require("./圈3Parser.js")
-const JSListener = require("./定制监听器.js").JSListener
+const 定制监听器 = require("./定制监听器.js").定制监听器
 
 运行();
 
@@ -12614,7 +12613,7 @@ var parser = new 圈3Parser.圈3Parser(tokens)
 parser.buildParseTrees = true
 var tree = parser.程序()
 
-var extractor = new JSListener()
+var extractor = new 定制监听器()
 antlr4.tree.ParseTreeWalker.DEFAULT.walk(extractor, tree)
 }
 

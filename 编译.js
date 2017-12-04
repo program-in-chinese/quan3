@@ -2,7 +2,7 @@ const antlr4 = require("antlr4/index")
 const fs = require("fs")
 const 圈3Lexer = require("./圈3Lexer.js")
 const 圈3Parser = require("./圈3Parser.js")
-const JSListener = require("./定制监听器.js").JSListener
+const 定制监听器 = require("./定制监听器.js").定制监听器
 
 运行();
 
@@ -16,7 +16,7 @@ var parser = new 圈3Parser.圈3Parser(tokens)
 parser.buildParseTrees = true
 var tree = parser.程序()
 
-var extractor = new JSListener()
+var extractor = new 定制监听器()
 antlr4.tree.ParseTreeWalker.DEFAULT.walk(extractor, tree)
 }
 
