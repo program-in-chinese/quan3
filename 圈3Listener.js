@@ -38,5 +38,14 @@ function 圈3Listener() {
 };
 
 
+// Enter a parse tree produced by 圈3Parser#转向.
+圈3Listener.prototype.enter转向 = function(ctx) {
+};
+
+// Exit a parse tree produced by 圈3Parser#转向.
+圈3Listener.prototype.exit转向 = function(ctx) {
+};
+
+
 
 exports.圈3Listener = 圈3Listener;

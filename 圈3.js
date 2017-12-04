@@ -12165,31 +12165,36 @@ var antlr4 = require('antlr4/index');
 
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0002\u0007\"\b\u0001\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004",
-    "\u0004\t\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0003\u0002\u0003",
-    "\u0002\u0003\u0002\u0003\u0003\u0003\u0003\u0003\u0003\u0003\u0004\u0003",
-    "\u0004\u0003\u0004\u0003\u0005\u0006\u0005\u0018\n\u0005\r\u0005\u000e",
-    "\u0005\u0019\u0003\u0006\u0006\u0006\u001d\n\u0006\r\u0006\u000e\u0006",
-    "\u001e\u0003\u0006\u0003\u0006\u0002\u0002\u0007\u0003\u0003\u0005\u0004",
-    "\u0007\u0005\t\u0006\u000b\u0007\u0003\u0002\u0004\u0003\u00022;\u0004",
-    "\u0002\u000b\f\"\"\u0002#\u0002\u0003\u0003\u0002\u0002\u0002\u0002",
-    "\u0005\u0003\u0002\u0002\u0002\u0002\u0007\u0003\u0002\u0002\u0002\u0002",
-    "\t\u0003\u0002\u0002\u0002\u0002\u000b\u0003\u0002\u0002\u0002\u0003",
-    "\r\u0003\u0002\u0002\u0002\u0005\u0010\u0003\u0002\u0002\u0002\u0007",
-    "\u0013\u0003\u0002\u0002\u0002\t\u0017\u0003\u0002\u0002\u0002\u000b",
-    "\u001c\u0003\u0002\u0002\u0002\r\u000e\u0007\u5f02\u0002\u0002\u000e",
-    "\u000f\u0007\u59cd\u0002\u0002\u000f\u0004\u0003\u0002\u0002\u0002\u0010",
-    "\u0011\u0007\u7ed5\u0002\u0002\u0011\u0012\u0007\u6761\u0002\u0002\u0012",
-    "\u0006\u0003\u0002\u0002\u0002\u0013\u0014\u0007\u524f\u0002\u0002\u0014",
-    "\u0015\u0007\u8fdd\u0002\u0002\u0015\b\u0003\u0002\u0002\u0002\u0016",
-    "\u0018\t\u0002\u0002\u0002\u0017\u0016\u0003\u0002\u0002\u0002\u0018",
-    "\u0019\u0003\u0002\u0002\u0002\u0019\u0017\u0003\u0002\u0002\u0002\u0019",
-    "\u001a\u0003\u0002\u0002\u0002\u001a\n\u0003\u0002\u0002\u0002\u001b",
-    "\u001d\t\u0003\u0002\u0002\u001c\u001b\u0003\u0002\u0002\u0002\u001d",
-    "\u001e\u0003\u0002\u0002\u0002\u001e\u001c\u0003\u0002\u0002\u0002\u001e",
-    "\u001f\u0003\u0002\u0002\u0002\u001f \u0003\u0002\u0002\u0002 !\b\u0006",
-    "\u0002\u0002!\f\u0003\u0002\u0002\u0002\u0005\u0002\u0019\u001e\u0003",
-    "\b\u0002\u0002"].join("");
+    "\u0002\n.\b\u0001\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004",
+    "\t\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007",
+    "\u0004\b\t\b\u0004\t\t\t\u0003\u0002\u0003\u0002\u0003\u0002\u0003\u0003",
+    "\u0003\u0003\u0003\u0003\u0003\u0004\u0003\u0004\u0003\u0004\u0003\u0005",
+    "\u0003\u0005\u0003\u0006\u0003\u0006\u0003\u0007\u0003\u0007\u0003\b",
+    "\u0006\b$\n\b\r\b\u000e\b%\u0003\t\u0006\t)\n\t\r\t\u000e\t*\u0003\t",
+    "\u0003\t\u0002\u0002\n\u0003\u0003\u0005\u0004\u0007\u0005\t\u0006\u000b",
+    "\u0007\r\b\u000f\t\u0011\n\u0003\u0002\u0005\u0004\u0002\u53f5\u53f5",
+    "\u5de8\u5de8\u0003\u00022;\u0004\u0002\u000b\f\"\"\u0002/\u0002\u0003",
+    "\u0003\u0002\u0002\u0002\u0002\u0005\u0003\u0002\u0002\u0002\u0002\u0007",
+    "\u0003\u0002\u0002\u0002\u0002\t\u0003\u0002\u0002\u0002\u0002\u000b",
+    "\u0003\u0002\u0002\u0002\u0002\r\u0003\u0002\u0002\u0002\u0002\u000f",
+    "\u0003\u0002\u0002\u0002\u0002\u0011\u0003\u0002\u0002\u0002\u0003\u0013",
+    "\u0003\u0002\u0002\u0002\u0005\u0016\u0003\u0002\u0002\u0002\u0007\u0019",
+    "\u0003\u0002\u0002\u0002\t\u001c\u0003\u0002\u0002\u0002\u000b\u001e",
+    "\u0003\u0002\u0002\u0002\r \u0003\u0002\u0002\u0002\u000f#\u0003\u0002",
+    "\u0002\u0002\u0011(\u0003\u0002\u0002\u0002\u0013\u0014\u0007\u5f02",
+    "\u0002\u0002\u0014\u0015\u0007\u59cd\u0002\u0002\u0015\u0004\u0003\u0002",
+    "\u0002\u0002\u0016\u0017\u0007\u7ed5\u0002\u0002\u0017\u0018\u0007\u6761",
+    "\u0002\u0002\u0018\u0006\u0003\u0002\u0002\u0002\u0019\u001a\u0007\u524f",
+    "\u0002\u0002\u001a\u001b\u0007\u8fdd\u0002\u0002\u001b\b\u0003\u0002",
+    "\u0002\u0002\u001c\u001d\u0007\u8f6e\u0002\u0002\u001d\n\u0003\u0002",
+    "\u0002\u0002\u001e\u001f\u0007\u5ea8\u0002\u0002\u001f\f\u0003\u0002",
+    "\u0002\u0002 !\t\u0002\u0002\u0002!\u000e\u0003\u0002\u0002\u0002\"",
+    "$\t\u0003\u0002\u0002#\"\u0003\u0002\u0002\u0002$%\u0003\u0002\u0002",
+    "\u0002%#\u0003\u0002\u0002\u0002%&\u0003\u0002\u0002\u0002&\u0010\u0003",
+    "\u0002\u0002\u0002\')\t\u0004\u0002\u0002(\'\u0003\u0002\u0002\u0002",
+    ")*\u0003\u0002\u0002\u0002*(\u0003\u0002\u0002\u0002*+\u0003\u0002\u0002",
+    "\u0002+,\u0003\u0002\u0002\u0002,-\b\t\u0002\u0002-\u0012\u0003\u0002",
+    "\u0002\u0002\u0005\u0002%*\u0003\b\u0002\u0002"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -12209,19 +12214,24 @@ function 圈3Lexer(input) {
 圈3Lexer.T__0 = 1;
 圈3Lexer.T__1 = 2;
 圈3Lexer.T__2 = 3;
-圈3Lexer.T数 = 4;
-圈3Lexer.T空白 = 5;
+圈3Lexer.T__3 = 4;
+圈3Lexer.T__4 = 5;
+圈3Lexer.T转向 = 6;
+圈3Lexer.T数 = 7;
+圈3Lexer.T空白 = 8;
 
 圈3Lexer.prototype.channelNames = [ "DEFAULT_TOKEN_CHANNEL", "HIDDEN" ];
 
 圈3Lexer.prototype.modeNames = [ "DEFAULT_MODE" ];
 
 圈3Lexer.prototype.literalNames = [ null, "'\u5F00\u59CB'", "'\u7ED3\u675F'", 
-                                   "'\u524D\u8FDB'" ];
+                                   "'\u524D\u8FDB'", "'\u8F6C'", "'\u5EA6'" ];
 
-圈3Lexer.prototype.symbolicNames = [ null, null, null, null, "T\u0001", "T\u0001\u0002" ];
+圈3Lexer.prototype.symbolicNames = [ null, null, null, null, null, null, 
+                                    "T\u0001\u0002", "T\u0001", "T\u0001\u0002" ];
 
-圈3Lexer.prototype.ruleNames = [ "T__0", "T__1", "T__2", "T数", "T空白" ];
+圈3Lexer.prototype.ruleNames = [ "T__0", "T__1", "T__2", "T__3", "T__4", 
+                                "T转向", "T数", "T空白" ];
 
 圈3Lexer.prototype.grammarFileName = "圈3.g4";
 
@@ -12271,6 +12281,15 @@ function 圈3Listener() {
 };
 
 
+// Enter a parse tree produced by 圈3Parser#转向.
+圈3Listener.prototype.enter转向 = function(ctx) {
+};
+
+// Exit a parse tree produced by 圈3Parser#转向.
+圈3Listener.prototype.exit转向 = function(ctx) {
+};
+
+
 
 exports.圈3Listener = 圈3Listener;
 },{"antlr4/index":42}],50:[function(require,module,exports){
@@ -12281,19 +12300,25 @@ var 圈3Listener = require('./圈3Listener').圈3Listener;
 var grammarFileName = "圈3.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0003\u0007\u0016\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004",
-    "\t\u0004\u0003\u0002\u0003\u0002\u0006\u0002\u000b\n\u0002\r\u0002\u000e",
-    "\u0002\f\u0003\u0002\u0003\u0002\u0003\u0003\u0003\u0003\u0003\u0004",
-    "\u0003\u0004\u0003\u0004\u0003\u0004\u0002\u0002\u0005\u0002\u0004\u0006",
-    "\u0002\u0002\u0002\u0013\u0002\b\u0003\u0002\u0002\u0002\u0004\u0010",
-    "\u0003\u0002\u0002\u0002\u0006\u0012\u0003\u0002\u0002\u0002\b\n\u0007",
-    "\u0003\u0002\u0002\t\u000b\u0005\u0004\u0003\u0002\n\t\u0003\u0002\u0002",
-    "\u0002\u000b\f\u0003\u0002\u0002\u0002\f\n\u0003\u0002\u0002\u0002\f",
-    "\r\u0003\u0002\u0002\u0002\r\u000e\u0003\u0002\u0002\u0002\u000e\u000f",
-    "\u0007\u0004\u0002\u0002\u000f\u0003\u0003\u0002\u0002\u0002\u0010\u0011",
-    "\u0005\u0006\u0004\u0002\u0011\u0005\u0003\u0002\u0002\u0002\u0012\u0013",
-    "\u0007\u0005\u0002\u0002\u0013\u0014\u0007\u0006\u0002\u0002\u0014\u0007",
-    "\u0003\u0002\u0002\u0002\u0003\f"].join("");
+    "\u0003\n\u001f\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
+    "\u0004\u0004\u0005\t\u0005\u0003\u0002\u0003\u0002\u0006\u0002\r\n\u0002",
+    "\r\u0002\u000e\u0002\u000e\u0003\u0002\u0003\u0002\u0003\u0003\u0003",
+    "\u0003\u0005\u0003\u0015\n\u0003\u0003\u0004\u0003\u0004\u0003\u0004",
+    "\u0003\u0005\u0003\u0005\u0003\u0005\u0003\u0005\u0003\u0005\u0003\u0005",
+    "\u0002\u0002\u0006\u0002\u0004\u0006\b\u0002\u0002\u0002\u001c\u0002",
+    "\n\u0003\u0002\u0002\u0002\u0004\u0014\u0003\u0002\u0002\u0002\u0006",
+    "\u0016\u0003\u0002\u0002\u0002\b\u0019\u0003\u0002\u0002\u0002\n\f\u0007",
+    "\u0003\u0002\u0002\u000b\r\u0005\u0004\u0003\u0002\f\u000b\u0003\u0002",
+    "\u0002\u0002\r\u000e\u0003\u0002\u0002\u0002\u000e\f\u0003\u0002\u0002",
+    "\u0002\u000e\u000f\u0003\u0002\u0002\u0002\u000f\u0010\u0003\u0002\u0002",
+    "\u0002\u0010\u0011\u0007\u0004\u0002\u0002\u0011\u0003\u0003\u0002\u0002",
+    "\u0002\u0012\u0015\u0005\u0006\u0004\u0002\u0013\u0015\u0005\b\u0005",
+    "\u0002\u0014\u0012\u0003\u0002\u0002\u0002\u0014\u0013\u0003\u0002\u0002",
+    "\u0002\u0015\u0005\u0003\u0002\u0002\u0002\u0016\u0017\u0007\u0005\u0002",
+    "\u0002\u0017\u0018\u0007\t\u0002\u0002\u0018\u0007\u0003\u0002\u0002",
+    "\u0002\u0019\u001a\u0007\b\u0002\u0002\u001a\u001b\u0007\u0006\u0002",
+    "\u0002\u001b\u001c\u0007\t\u0002\u0002\u001c\u001d\u0007\u0007\u0002",
+    "\u0002\u001d\t\u0003\u0002\u0002\u0002\u0004\u000e\u0014"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -12302,11 +12327,13 @@ var decisionsToDFA = atn.decisionToState.map( function(ds, index) { return new a
 
 var sharedContextCache = new antlr4.PredictionContextCache();
 
-var literalNames = [ null, "'\u5F00\u59CB'", "'\u7ED3\u675F'", "'\u524D\u8FDB'" ];
+var literalNames = [ null, "'\u5F00\u59CB'", "'\u7ED3\u675F'", "'\u524D\u8FDB'", 
+                     "'\u8F6C'", "'\u5EA6'" ];
 
-var symbolicNames = [ null, null, null, null, "T\u0001", "T\u0001\u0002" ];
+var symbolicNames = [ null, null, null, null, null, null, "T\u0001\u0002", 
+                      "T\u0001", "T\u0001\u0002" ];
 
-var ruleNames =  [ "程序", "声明", "前进" ];
+var ruleNames =  [ "程序", "声明", "前进", "转向" ];
 
 function 圈3Parser (input) {
 	antlr4.Parser.call(this, input);
@@ -12330,12 +12357,16 @@ Object.defineProperty(圈3Parser.prototype, "atn", {
 圈3Parser.T__0 = 1;
 圈3Parser.T__1 = 2;
 圈3Parser.T__2 = 3;
-圈3Parser.T数 = 4;
-圈3Parser.T空白 = 5;
+圈3Parser.T__3 = 4;
+圈3Parser.T__4 = 5;
+圈3Parser.T转向 = 6;
+圈3Parser.T数 = 7;
+圈3Parser.T空白 = 8;
 
 圈3Parser.RULE_程序 = 0;
 圈3Parser.RULE_声明 = 1;
 圈3Parser.RULE_前进 = 2;
+圈3Parser.RULE_转向 = 3;
 
 function 程序Context(parser, parent, invokingState) {
 	if(parent===undefined) {
@@ -12388,19 +12419,19 @@ function 程序Context(parser, parent, invokingState) {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 6;
+        this.state = 8;
         this.match(圈3Parser.T__0);
-        this.state = 8; 
+        this.state = 10; 
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         do {
-            this.state = 7;
+            this.state = 9;
             this.声明();
-            this.state = 10; 
+            this.state = 12; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while(_la===圈3Parser.T__2);
-        this.state = 12;
+        } while(_la===圈3Parser.T__2 || _la===圈3Parser.T转向);
+        this.state = 14;
         this.match(圈3Parser.T__1);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -12436,6 +12467,10 @@ function 声明Context(parser, parent, invokingState) {
     return this.getTypedRuleContext(前进Context,0);
 };
 
+声明Context.prototype.转向 = function() {
+    return this.getTypedRuleContext(转向Context,0);
+};
+
 声明Context.prototype.enterRule = function(listener) {
     if(listener instanceof 圈3Listener ) {
         listener.enter声明(this);
@@ -12458,9 +12493,22 @@ function 声明Context(parser, parent, invokingState) {
     var localctx = new 声明Context(this, this._ctx, this.state);
     this.enterRule(localctx, 2, 圈3Parser.RULE_声明);
     try {
-        this.enterOuterAlt(localctx, 1);
-        this.state = 14;
-        this.前进();
+        this.state = 18;
+        this._errHandler.sync(this);
+        switch(this._input.LA(1)) {
+        case 圈3Parser.T__2:
+            this.enterOuterAlt(localctx, 1);
+            this.state = 16;
+            this.前进();
+            break;
+        case 圈3Parser.T转向:
+            this.enterOuterAlt(localctx, 2);
+            this.state = 17;
+            this.转向();
+            break;
+        default:
+            throw new antlr4.error.NoViableAltException(this);
+        }
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;
@@ -12518,10 +12566,79 @@ function 前进Context(parser, parent, invokingState) {
     this.enterRule(localctx, 4, 圈3Parser.RULE_前进);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 16;
+        this.state = 20;
         this.match(圈3Parser.T__2);
-        this.state = 17;
+        this.state = 21;
         this.match(圈3Parser.T数);
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+function 转向Context(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = 圈3Parser.RULE_转向;
+    return this;
+}
+
+转向Context.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+转向Context.prototype.constructor = 转向Context;
+
+转向Context.prototype.T转向 = function() {
+    return this.getToken(圈3Parser.T转向, 0);
+};
+
+转向Context.prototype.T数 = function() {
+    return this.getToken(圈3Parser.T数, 0);
+};
+
+转向Context.prototype.enterRule = function(listener) {
+    if(listener instanceof 圈3Listener ) {
+        listener.enter转向(this);
+	}
+};
+
+转向Context.prototype.exitRule = function(listener) {
+    if(listener instanceof 圈3Listener ) {
+        listener.exit转向(this);
+	}
+};
+
+
+
+
+圈3Parser.转向Context = 转向Context;
+
+圈3Parser.prototype.转向 = function() {
+
+    var localctx = new 转向Context(this, this._ctx, this.state);
+    this.enterRule(localctx, 6, 圈3Parser.RULE_转向);
+    try {
+        this.enterOuterAlt(localctx, 1);
+        this.state = 23;
+        this.match(圈3Parser.T转向);
+        this.state = 24;
+        this.match(圈3Parser.T__3);
+        this.state = 25;
+        this.match(圈3Parser.T数);
+        this.state = 26;
+        this.match(圈3Parser.T__4);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;
@@ -12590,6 +12707,15 @@ var 指令序列 = [];
   指令序列.push({名称: "前进", 参数: parseInt(前进量)});
 };
 
+定制监听器.prototype.exit转向 = function(ctx) {
+  var 方向 = ctx.getChild(0).getText();
+  var 角度 = parseInt(ctx.getChild(2).getText());
+
+  角度 = 角度 * (方向 === "左" ? -1 : 1);
+  document.getElementById("调试输出").innerHTML = "转向: " + 角度;
+
+  指令序列.push({名称: "转向", 参数: 角度});
+};
 
 exports.定制监听器 = 定制监听器;
 },{"./圈3Listener.js":49,"antlr4/index":42}],52:[function(require,module,exports){

@@ -48,5 +48,14 @@ var 指令序列 = [];
   指令序列.push({名称: "前进", 参数: parseInt(前进量)});
 };
 
+定制监听器.prototype.exit转向 = function(ctx) {
+  var 方向 = ctx.getChild(0).getText();
+  var 角度 = parseInt(ctx.getChild(2).getText());
+
+  角度 = 角度 * (方向 === "左" ? -1 : 1);
+  document.getElementById("调试输出").innerHTML = "转向: " + 角度;
+
+  指令序列.push({名称: "转向", 参数: 角度});
+};
 
 exports.定制监听器 = 定制监听器;
