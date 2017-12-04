@@ -12668,7 +12668,7 @@ const 圈3Listener = require('./圈3Listener.js').圈3Listener
 定制监听器.prototype = Object.create(圈3Listener.prototype);
 定制监听器.prototype.constructor = 定制监听器;
 
-var 位置 = {x: 200, y: 200};
+var 原点 = {x: 200, y: 200};
 var 头位置 = {x: 200, y: 200};
 var 前进方向 = 0; // 默认向上
 var 序号 = 0;
@@ -12693,9 +12693,18 @@ var 指令序列 = [];
       var 指令名 = 指令.名称;
       if (指令名 === "前进") {
         var 前进距离 = 指令.参数;
+        line(原点.x, 原点.y,
+          原点.x, 序号 < 前进距离 ? 原点.y - 序号 : 原点.y - 前进距离);
 
+        if (序号 > 50 && 序号 < 100) {
+          line(原点.x, 原点.y - 前进距离,
+            原点.x - (序号 - 50), 原点.y - 前进距离);
+        } else if (序号 > 100) {
+          line(原点.x, 原点.y - 前进距离,
+            原点.x - 50, 原点.y - 前进距离);
+        }
         // TODO: 根据方向动态生成目标位置
-        //if (前进方向 === 0) {
+        /*if (前进方向 === 0) {
           if (序号 < 前进距离) {
             头位置.y = 位置.y - 序号;
             line(位置.x, 位置.y,
