@@ -11,12 +11,12 @@ const 圈3Listener = require('./圈3Listener.js').圈3Listener
 
 var 原点 = {x: 200, y: 200};
 var 序号 = 0;
-// 指令格式: 名称 (转向, 前进, 笔色等等); 参数 (转向角度, 前进长度等等); 
+// 指令格式: 名称 (转向, 前进, 笔色等等); 参数 (转向角度--右为90,左为-90; 前进长度-像素数等等); 
 var 指令序列 = [];
 
 定制监听器.prototype.enter程序 = function(ctx) {
   序号 = 0;
-  // TODO: 不会被再次调用(应只需调用一次)
+  // 只需调用一次
   // https://p5js.org/reference/#/p5/setup
   构图 = function() {
     新画布(720, 400);
@@ -42,12 +42,10 @@ var 指令序列 = [];
 };
 
 定制监听器.prototype.exit前进 = function(ctx) {
-  // get the variable
-  var t1 = ctx.getChild(0).getText()
-  var t2 = ctx.getChild(1).getText()
-  document.getElementById("spanId").innerHTML = t1 + ": " + t2;
+  var 前进量 = ctx.getChild(1).getText()
+  document.getElementById("调试输出").innerHTML = "前进: " + 前进量;
 
-  指令序列.push({名称: "前进", 参数: parseInt(t2)});
+  指令序列.push({名称: "前进", 参数: parseInt(前进量)});
 };
 
 

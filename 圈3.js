@@ -12553,12 +12553,12 @@ const 圈3Listener = require('./圈3Listener.js').圈3Listener
 
 var 原点 = {x: 200, y: 200};
 var 序号 = 0;
-// 指令格式: 名称 (转向, 前进, 笔色等等); 参数 (转向角度, 前进长度等等); 
+// 指令格式: 名称 (转向, 前进, 笔色等等); 参数 (转向角度--右为90,左为-90; 前进长度-像素数等等); 
 var 指令序列 = [];
 
 定制监听器.prototype.enter程序 = function(ctx) {
   序号 = 0;
-  // TODO: 不会被再次调用(应只需调用一次)
+  // 只需调用一次
   // https://p5js.org/reference/#/p5/setup
   构图 = function() {
     新画布(720, 400);
@@ -12584,12 +12584,10 @@ var 指令序列 = [];
 };
 
 定制监听器.prototype.exit前进 = function(ctx) {
-  // get the variable
-  var t1 = ctx.getChild(0).getText()
-  var t2 = ctx.getChild(1).getText()
-  document.getElementById("spanId").innerHTML = t1 + ": " + t2;
+  var 前进量 = ctx.getChild(1).getText()
+  document.getElementById("调试输出").innerHTML = "前进: " + 前进量;
 
-  指令序列.push({名称: "前进", 参数: parseInt(t2)});
+  指令序列.push({名称: "前进", 参数: parseInt(前进量)});
 };
 
 
@@ -12603,18 +12601,16 @@ const 定制监听器 = require("./定制监听器.js").定制监听器
 
 运行();
 
-// TODO: 改进-现为全局
+// TODO: 需改进-现为全局, 由于browserify
 function 运行() {
   var 代码 = document.getElementById('输入代码').value;
-var chars = new antlr4.InputStream(代码)
-var lexer = new 圈3Lexer.圈3Lexer(chars)
-var tokens  = new antlr4.CommonTokenStream(lexer)
-var parser = new 圈3Parser.圈3Parser(tokens)
-parser.buildParseTrees = true
-var tree = parser.程序()
+  var 输入流 = new antlr4.InputStream(代码)
+  var 词法分析器 = new 圈3Lexer.圈3Lexer(输入流)
+  var 词  = new antlr4.CommonTokenStream(词法分析器)
+  var 语法分析器 = new 圈3Parser.圈3Parser(词)
+  语法分析器.buildParseTrees = true
 
-var extractor = new 定制监听器()
-antlr4.tree.ParseTreeWalker.DEFAULT.walk(extractor, tree)
+  antlr4.tree.ParseTreeWalker.DEFAULT.walk(new 定制监听器(), 语法分析器.程序())
 }
 
 window.运行 = 运行;
