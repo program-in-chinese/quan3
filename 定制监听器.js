@@ -90,9 +90,6 @@ function 生成路径表(指令序列) {
 
 定制监听器.prototype.exit前进 = function(上下文) {
   var 前进量 = 上下文.getChild(1).getText()
-  document.getElementById("调试输出").innerHTML = "前进: " + 前进量;
-
-  // TODO: 名称常量化
   指令序列.push({名称: 常量_指令名_前进, 参数: parseInt(前进量)});
 };
 
@@ -101,8 +98,6 @@ function 生成路径表(指令序列) {
   var 角度 = parseInt(上下文.getChild(2).getText());
 
   角度 = 角度 * (方向 === "左" ? 1 : -1);
-  document.getElementById("调试输出").innerHTML = "转向: " + 角度;
-
   指令序列.push({名称: 常量_指令名_转向, 参数: 角度});
 };
 
