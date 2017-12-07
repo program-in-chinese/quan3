@@ -29,6 +29,15 @@ function 圈3Listener() {
 };
 
 
+// Enter a parse tree produced by 圈3Parser#循环.
+圈3Listener.prototype.enter循环 = function(ctx) {
+};
+
+// Exit a parse tree produced by 圈3Parser#循环.
+圈3Listener.prototype.exit循环 = function(ctx) {
+};
+
+
 // Enter a parse tree produced by 圈3Parser#前进.
 圈3Listener.prototype.enter前进 = function(ctx) {
 };

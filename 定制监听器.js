@@ -19,6 +19,9 @@ var 原点 = {x: 画布尺寸.x/2, y: 画布尺寸.y/2};
 var 前进角度 = 90; // 默认向上, 对应弧度: 90 * Math.PI / 180
 // 指令格式: 名称 (转向, 前进, 笔色等等); 参数 (转向角度--右为负,左为正; 前进长度-像素数等等);
 var 指令序列 = [];
+// TODO: 支持多层循环
+var 循环次数 = 0;
+var 当前循环的指令序列 = [];
 
 定制监听器.prototype.enter程序 = function(ctx) {
 
@@ -36,6 +39,7 @@ function 重置状态() {
   前进角度 = 90;
   指令序列 = [];
 }
+
 // 根据指令序列, 生成路径分段描述(段起止点坐标, 颜色等等)
 // 如: 前进50, 左转90度, 前进50 应返回:
 // {起点: {x: 200, y: 200}, 终点: {x: 200, y: 150}, 长度: 50},
@@ -65,6 +69,7 @@ function 生成路径表(指令序列) {
 }
 
 定制监听器.prototype.exit程序 = function(ctx) {
+  document.getElementById("调试输出").innerHTML = JSON.stringify(指令序列);
   var 路径表 = 生成路径表(指令序列);
   绘制 = function() {
     var 当前序号 = 序号;
@@ -88,9 +93,28 @@ function 生成路径表(指令序列) {
   }
 };
 
+定制监听器.prototype.enter循环 = function(上下文) {
+  循环次数 = 上下文.getChild(1).getText();
+}
+
+定制监听器.prototype.exit循环 = function(上下文) {
+  for (var i = 0; i < 循环次数; i++) {
+    for (var j = 0; j < 当前循环的指令序列.length; j++) {
+      指令序列.push(当前循环的指令序列[j]);
+    }
+  }
+  当前循环的指令序列 = [];
+  循环次数 = 0;
+}
+
 定制监听器.prototype.exit前进 = function(上下文) {
   var 前进量 = 上下文.getChild(1).getText()
-  指令序列.push({名称: 常量_指令名_前进, 参数: parseInt(前进量)});
+  var 指令 = {名称: 常量_指令名_前进, 参数: parseInt(前进量)};
+  if (循环次数 > 0) {
+    当前循环的指令序列.push(指令);
+  } else {
+    指令序列.push(指令);
+  }
 };
 
 定制监听器.prototype.exit转向 = function(上下文) {
@@ -98,7 +122,12 @@ function 生成路径表(指令序列) {
   var 角度 = parseInt(上下文.getChild(2).getText());
 
   角度 = 角度 * (方向 === "左" ? 1 : -1);
-  指令序列.push({名称: 常量_指令名_转向, 参数: 角度});
+  var 指令 = {名称: 常量_指令名_转向, 参数: 角度};
+  if (循环次数 > 0) {
+    当前循环的指令序列.push(指令);
+  } else {
+    指令序列.push(指令);
+  }
 };
 
 exports.定制监听器 = 定制监听器;
