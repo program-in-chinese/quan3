@@ -9,6 +9,10 @@ const 定制监听器 = require("./定制监听器.js").定制监听器
 // TODO: 需改进-现为全局, 由于browserify
 function 运行() {
   var 代码 = document.getElementById('输入代码').value;
+  分析(代码);
+}
+
+function 分析(代码) {
   var 输入流 = new antlr4.InputStream(代码)
   var 词法分析器 = new 圈3Lexer.圈3Lexer(输入流)
   var 词  = new antlr4.CommonTokenStream(词法分析器)
@@ -19,3 +23,5 @@ function 运行() {
 }
 
 window.运行 = 运行;
+
+exports.分析 = 分析;
