@@ -12818,9 +12818,7 @@ var 当前循环的指令序列 = [];
   重置状态();
   // 只需调用一次
   // https://p5js.org/reference/#/p5/setup
-  构图 = function() {
-    新画布(画布尺寸.x, 画布尺寸.y);
-  }
+  
 };
 
 function 重置状态() {
@@ -12859,7 +12857,7 @@ function 生成路径表(指令序列) {
 }
 
 定制监听器.prototype.exit程序 = function(ctx) {
-  document.getElementById("调试输出").innerHTML = JSON.stringify(指令序列);
+  //document.getElementById("调试输出").innerHTML = JSON.stringify(指令序列);
   var 路径表 = 生成路径表(指令序列);
   绘制 = function() {
     var 当前序号 = 序号;
@@ -12918,6 +12916,10 @@ function 添加指令(指令) {
   }
 }
 
+定制监听器.prototype.返回指令序列 = function() {
+  return 指令序列;
+}
+
 exports.定制监听器 = 定制监听器;
 exports.生成路径表 = 生成路径表;
 exports.常量_指令名_前进 = 常量_指令名_前进;
@@ -12929,25 +12931,27 @@ const 圈3Lexer = require("./圈3Lexer.js")
 const 圈3Parser = require("./圈3Parser.js")
 const 定制监听器 = require("./定制监听器.js").定制监听器
 
-运行();
+/*运行();
 
 // TODO: 需改进-现为全局, 由于browserify
 function 运行() {
-  var 代码 = document.getElementById('输入代码').value;
+  var 代码 = ;
   分析(代码);
-}
+}*/
 
-function 分析(代码) {
+分析 = function(代码) {
   var 输入流 = new antlr4.InputStream(代码)
   var 词法分析器 = new 圈3Lexer.圈3Lexer(输入流)
   var 词  = new antlr4.CommonTokenStream(词法分析器)
   var 语法分析器 = new 圈3Parser.圈3Parser(词)
   语法分析器.buildParseTrees = true
 
-  antlr4.tree.ParseTreeWalker.DEFAULT.walk(new 定制监听器(), 语法分析器.程序())
+  var 监听器 = new 定制监听器();
+  antlr4.tree.ParseTreeWalker.DEFAULT.walk(监听器, 语法分析器.程序())
+  return 监听器;
 }
 
-window.运行 = 运行;
+//window.分析 = 分析;
 
 exports.分析 = 分析;
 },{"./圈3Lexer.js":48,"./圈3Parser.js":50,"./定制监听器.js":51,"antlr4/index":42,"fs":53}],53:[function(require,module,exports){

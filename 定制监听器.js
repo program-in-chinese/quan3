@@ -28,9 +28,7 @@ var 当前循环的指令序列 = [];
   重置状态();
   // 只需调用一次
   // https://p5js.org/reference/#/p5/setup
-  构图 = function() {
-    新画布(画布尺寸.x, 画布尺寸.y);
-  }
+  
 };
 
 function 重置状态() {
@@ -69,7 +67,7 @@ function 生成路径表(指令序列) {
 }
 
 定制监听器.prototype.exit程序 = function(ctx) {
-  document.getElementById("调试输出").innerHTML = JSON.stringify(指令序列);
+  //document.getElementById("调试输出").innerHTML = JSON.stringify(指令序列);
   var 路径表 = 生成路径表(指令序列);
   绘制 = function() {
     var 当前序号 = 序号;
@@ -126,6 +124,10 @@ function 添加指令(指令) {
   } else {
     指令序列.push(指令);
   }
+}
+
+定制监听器.prototype.返回指令序列 = function() {
+  return 指令序列;
 }
 
 exports.定制监听器 = 定制监听器;
