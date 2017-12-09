@@ -12926,19 +12926,11 @@ exports.常量_指令名_前进 = 常量_指令名_前进;
 exports.常量_指令名_转向 = 常量_指令名_转向;
 },{"./圈3Listener.js":49,"antlr4/index":42}],52:[function(require,module,exports){
 const antlr4 = require("antlr4/index")
-const fs = require("fs")
 const 圈3Lexer = require("./圈3Lexer.js")
 const 圈3Parser = require("./圈3Parser.js")
 const 定制监听器 = require("./定制监听器.js").定制监听器
 
-/*运行();
-
 // TODO: 需改进-现为全局, 由于browserify
-function 运行() {
-  var 代码 = ;
-  分析(代码);
-}*/
-
 分析 = function(代码) {
   var 输入流 = new antlr4.InputStream(代码)
   var 词法分析器 = new 圈3Lexer.圈3Lexer(输入流)
@@ -12951,9 +12943,7 @@ function 运行() {
   return 监听器;
 }
 
-//window.分析 = 分析;
-
 exports.分析 = 分析;
-},{"./圈3Lexer.js":48,"./圈3Parser.js":50,"./定制监听器.js":51,"antlr4/index":42,"fs":53}],53:[function(require,module,exports){
+},{"./圈3Lexer.js":48,"./圈3Parser.js":50,"./定制监听器.js":51,"antlr4/index":42}],53:[function(require,module,exports){
 
 },{}]},{},[52]);
