@@ -2,6 +2,8 @@
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 var 圈3Listener = require('./圈3Listener').圈3Listener;
+var 圈3Visitor = require('./圈3Visitor').圈3Visitor;
+
 var grammarFileName = "圈3.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
@@ -125,6 +127,14 @@ function 程序Context(parser, parent, invokingState) {
 	}
 };
 
+程序Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof 圈3Visitor ) {
+        return visitor.visit程序(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -203,6 +213,14 @@ function 声明Context(parser, parent, invokingState) {
     if(listener instanceof 圈3Listener ) {
         listener.exit声明(this);
 	}
+};
+
+声明Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof 圈3Visitor ) {
+        return visitor.visit声明(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -293,6 +311,14 @@ function 循环Context(parser, parent, invokingState) {
 	}
 };
 
+循环Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof 圈3Visitor ) {
+        return visitor.visit循环(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -369,6 +395,14 @@ function 前进Context(parser, parent, invokingState) {
 	}
 };
 
+前进Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof 圈3Visitor ) {
+        return visitor.visit前进(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -432,6 +466,14 @@ function 转向Context(parser, parent, invokingState) {
     if(listener instanceof 圈3Listener ) {
         listener.exit转向(this);
 	}
+};
+
+转向Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof 圈3Visitor ) {
+        return visitor.visit转向(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
