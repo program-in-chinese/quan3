@@ -448,7 +448,7 @@ var CharStreams = {
 
 exports.CharStreams = CharStreams;
 
-},{"./InputStream":6,"fs":53}],3:[function(require,module,exports){
+},{"./InputStream":6,"fs":55}],3:[function(require,module,exports){
 //
 /* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
@@ -652,7 +652,7 @@ FileStream.prototype.constructor = FileStream;
 
 exports.FileStream = FileStream;
 
-},{"./InputStream":6,"fs":53}],6:[function(require,module,exports){
+},{"./InputStream":6,"fs":55}],6:[function(require,module,exports){
 //
 /* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
@@ -12319,6 +12319,8 @@ exports.圈3Listener = 圈3Listener;
 // jshint ignore: start
 var antlr4 = require('antlr4/index');
 var 圈3Listener = require('./圈3Listener').圈3Listener;
+var 圈3Visitor = require('./圈3Visitor').圈3Visitor;
+
 var grammarFileName = "圈3.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
@@ -12442,6 +12444,14 @@ function 程序Context(parser, parent, invokingState) {
 	}
 };
 
+程序Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof 圈3Visitor ) {
+        return visitor.visit程序(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -12520,6 +12530,14 @@ function 声明Context(parser, parent, invokingState) {
     if(listener instanceof 圈3Listener ) {
         listener.exit声明(this);
 	}
+};
+
+声明Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof 圈3Visitor ) {
+        return visitor.visit声明(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
 };
 
 
@@ -12610,6 +12628,14 @@ function 循环Context(parser, parent, invokingState) {
 	}
 };
 
+循环Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof 圈3Visitor ) {
+        return visitor.visit循环(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -12686,6 +12712,14 @@ function 前进Context(parser, parent, invokingState) {
 	}
 };
 
+前进Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof 圈3Visitor ) {
+        return visitor.visit前进(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -12751,6 +12785,14 @@ function 转向Context(parser, parent, invokingState) {
 	}
 };
 
+转向Context.prototype.accept = function(visitor) {
+    if ( visitor instanceof 圈3Visitor ) {
+        return visitor.visit转向(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
 
 
 
@@ -12787,7 +12829,54 @@ function 转向Context(parser, parent, invokingState) {
 
 exports.圈3Parser = 圈3Parser;
 
-},{"./圈3Listener":49,"antlr4/index":42}],51:[function(require,module,exports){
+},{"./圈3Listener":49,"./圈3Visitor":51,"antlr4/index":42}],51:[function(require,module,exports){
+// Generated from 圈3.g4 by ANTLR 4.7
+// jshint ignore: start
+var antlr4 = require('antlr4/index');
+
+// This class defines a complete generic visitor for a parse tree produced by 圈3Parser.
+
+function 圈3Visitor() {
+	antlr4.tree.ParseTreeVisitor.call(this);
+	return this;
+}
+
+圈3Visitor.prototype = Object.create(antlr4.tree.ParseTreeVisitor.prototype);
+圈3Visitor.prototype.constructor = 圈3Visitor;
+
+// Visit a parse tree produced by 圈3Parser#程序.
+圈3Visitor.prototype.visit程序 = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by 圈3Parser#声明.
+圈3Visitor.prototype.visit声明 = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by 圈3Parser#循环.
+圈3Visitor.prototype.visit循环 = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by 圈3Parser#前进.
+圈3Visitor.prototype.visit前进 = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by 圈3Parser#转向.
+圈3Visitor.prototype.visit转向 = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+
+exports.圈3Visitor = 圈3Visitor;
+},{"antlr4/index":42}],52:[function(require,module,exports){
 var antlr4 = require('antlr4/index');
 const 圈3Listener = require('./圈3Listener.js').圈3Listener
 
@@ -12927,11 +13016,32 @@ exports.生成路径表 = 生成路径表;
 exports.常量_指令名_前进 = 常量_指令名_前进;
 exports.常量_指令名_转向 = 常量_指令名_转向;
 exports.初始前进角度 = 初始前进角度;
-},{"./圈3Listener.js":49,"antlr4/index":42}],52:[function(require,module,exports){
+},{"./圈3Listener.js":49,"antlr4/index":42}],53:[function(require,module,exports){
+var antlr4 = require('antlr4/index');
+const 圈3Visitor = require('./圈3Visitor.js').圈3Visitor
+
+定制访问器 = function () {
+	圈3Visitor.call(this);
+	return this;
+}
+
+定制访问器.prototype = Object.create(圈3Visitor.prototype);
+定制访问器.prototype.constructor = 定制访问器;
+
+var 转向 = [];
+
+定制访问器.prototype.visit转向 = function(上下文) {
+  转向.push(上下文.T数().getText());
+  document.getElementById("调试输出").innerHTML = 转向;
+}
+
+exports.定制访问器 = 定制访问器;
+},{"./圈3Visitor.js":51,"antlr4/index":42}],54:[function(require,module,exports){
 const antlr4 = require("antlr4/index")
 const 圈3Lexer = require("./圈3Lexer.js")
 const 圈3Parser = require("./圈3Parser.js")
 const 定制监听器 = require("./定制监听器.js").定制监听器
+const 定制访问器 = require("./定制访问器.js").定制访问器
 
 // TODO: 需改进-现为全局, 由于browserify
 分析 = function(代码) {
@@ -12940,13 +13050,17 @@ const 定制监听器 = require("./定制监听器.js").定制监听器
   var 词  = new antlr4.CommonTokenStream(词法分析器)
   var 语法分析器 = new 圈3Parser.圈3Parser(词)
   语法分析器.buildParseTrees = true
-
+/*
   var 监听器 = new 定制监听器();
   antlr4.tree.ParseTreeWalker.DEFAULT.walk(监听器, 语法分析器.程序())
+  document.getElementById("调试输出").innerHTML = "监听器1";
+*/
+  var 访问器 = new 定制访问器();
+  访问器.visit(语法分析器.程序());
   return 监听器;
 }
 
 exports.分析 = 分析;
-},{"./圈3Lexer.js":48,"./圈3Parser.js":50,"./定制监听器.js":51,"antlr4/index":42}],53:[function(require,module,exports){
+},{"./圈3Lexer.js":48,"./圈3Parser.js":50,"./定制监听器.js":52,"./定制访问器.js":53,"antlr4/index":42}],55:[function(require,module,exports){
 
-},{}]},{},[52]);
+},{}]},{},[54]);

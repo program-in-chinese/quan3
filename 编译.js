@@ -2,6 +2,7 @@ const antlr4 = require("antlr4/index")
 const 圈3Lexer = require("./圈3Lexer.js")
 const 圈3Parser = require("./圈3Parser.js")
 const 定制监听器 = require("./定制监听器.js").定制监听器
+const 定制访问器 = require("./定制访问器.js").定制访问器
 
 // TODO: 需改进-现为全局, 由于browserify
 分析 = function(代码) {
@@ -10,9 +11,13 @@ const 定制监听器 = require("./定制监听器.js").定制监听器
   var 词  = new antlr4.CommonTokenStream(词法分析器)
   var 语法分析器 = new 圈3Parser.圈3Parser(词)
   语法分析器.buildParseTrees = true
-
+/*
   var 监听器 = new 定制监听器();
   antlr4.tree.ParseTreeWalker.DEFAULT.walk(监听器, 语法分析器.程序())
+  document.getElementById("调试输出").innerHTML = "监听器1";
+*/
+  var 访问器 = new 定制访问器();
+  访问器.visit(语法分析器.程序());
   return 监听器;
 }
 
