@@ -13020,7 +13020,7 @@ exports.初始前进角度 = 初始前进角度;
 var antlr4 = require('antlr4/index');
 const 圈3Visitor = require('./圈3Visitor.js').圈3Visitor
 
-定制访问器 = function () {
+function 定制访问器 () {
 	圈3Visitor.call(this);
 	return this;
 }
@@ -13028,20 +13028,52 @@ const 圈3Visitor = require('./圈3Visitor.js').圈3Visitor
 定制访问器.prototype = Object.create(圈3Visitor.prototype);
 定制访问器.prototype.constructor = 定制访问器;
 
+var 语法树 = {子节点: []};
 var 转向 = [];
 
+定制访问器.prototype.visit程序 = function(上下文) {
+  var 子节点 = this.visitChildren(上下文);
+  语法树.子节点 = 子节点;
+  document.getElementById("调试输出").innerHTML += JSON.stringify(语法树);
+  return 子节点;
+};
+
+定制访问器.prototype.visit循环 = function(上下文) {
+  var 循环节点 = {类型: '循环', 次数: 上下文.T数().getText(), 子节点: this.visitChildren(上下文)};
+  document.getElementById("调试输出").innerHTML += '循环';
+  return 循环节点;
+};
+
+定制访问器.prototype.visit声明 = function(上下文) {
+  //语法树.子节点.push({类型: '声明'});
+  //document.getElementById("调试输出").innerHTML += '声明';
+  return this.visitChildren(上下文);
+};
+
 定制访问器.prototype.visit转向 = function(上下文) {
-  转向.push(上下文.T数().getText());
-  document.getElementById("调试输出").innerHTML = 转向;
-}
+  return {类型: '转向', 参数: 上下文.T数().getText()};
+};
+
+定制访问器.prototype.visit前进 = function(上下文) {
+  return {类型: '前进', 参数: 上下文.T数().getText()};
+};
+
+定制监听器.prototype.返回语法树 = function() {
+  return 语法树;
+};
+
+/*function 返回语法树() {
+  return 语法树;
+}*/
 
 exports.定制访问器 = 定制访问器;
+//exports.返回语法树 = 返回语法树;
 },{"./圈3Visitor.js":51,"antlr4/index":42}],54:[function(require,module,exports){
 const antlr4 = require("antlr4/index")
 const 圈3Lexer = require("./圈3Lexer.js")
 const 圈3Parser = require("./圈3Parser.js")
 const 定制监听器 = require("./定制监听器.js").定制监听器
-const 定制访问器 = require("./定制访问器.js").定制访问器
+const 定制访问器 = require("./定制访问器.js")
 
 // TODO: 需改进-现为全局, 由于browserify
 分析 = function(代码) {
@@ -13050,12 +13082,12 @@ const 定制访问器 = require("./定制访问器.js").定制访问器
   var 词  = new antlr4.CommonTokenStream(词法分析器)
   var 语法分析器 = new 圈3Parser.圈3Parser(词)
   语法分析器.buildParseTrees = true
-/*
+
   var 监听器 = new 定制监听器();
-  antlr4.tree.ParseTreeWalker.DEFAULT.walk(监听器, 语法分析器.程序())
+/*  antlr4.tree.ParseTreeWalker.DEFAULT.walk(监听器, 语法分析器.程序())
   document.getElementById("调试输出").innerHTML = "监听器1";
 */
-  var 访问器 = new 定制访问器();
+  var 访问器 = new 定制访问器.定制访问器();
   访问器.visit(语法分析器.程序());
   return 监听器;
 }
