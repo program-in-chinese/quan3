@@ -13047,7 +13047,7 @@ var 转向 = [];
 定制访问器.prototype.visit声明 = function(上下文) {
   //语法树.子节点.push({类型: '声明'});
   //document.getElementById("调试输出").innerHTML += '声明';
-  return this.visitChildren(上下文);
+  return this.visit(上下文.getChild(0));
 };
 
 定制访问器.prototype.visit转向 = function(上下文) {
