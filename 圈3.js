@@ -13032,15 +13032,15 @@ var 语法树 = {子节点: []};
 var 转向 = [];
 
 定制访问器.prototype.visit程序 = function(上下文) {
-  var 子节点 = this.visitChildren(上下文);
+  var 子节点 = this.visit(上下文.声明());
   语法树.子节点 = 子节点;
   document.getElementById("调试输出").innerHTML += JSON.stringify(语法树);
   return 子节点;
 };
 
 定制访问器.prototype.visit循环 = function(上下文) {
-  var 循环节点 = {类型: '循环', 次数: 上下文.T数().getText(), 子节点: this.visitChildren(上下文)};
-  document.getElementById("调试输出").innerHTML += '循环';
+  var 循环节点 = {类型: '循环', 次数: 上下文.T数().getText(), 子节点: this.visit(上下文.声明())};
+  // document.getElementById("调试输出").innerHTML += '循环';
   return 循环节点;
 };
 
