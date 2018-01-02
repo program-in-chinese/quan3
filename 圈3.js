@@ -13041,11 +13041,13 @@ function 定制访问器 () {
 };
 
 定制访问器.prototype.visit转向 = function(上下文) {
-  return {类型: '转向', 参数: 上下文.T数().getText()};
+  var 方向 = 上下文.T转向().getText();
+  var 角度 = parseInt(上下文.T数().getText()) * (方向 === "左" ? 1 : -1);
+  return {类型: '转向', 参数: 角度};
 };
 
 定制访问器.prototype.visit前进 = function(上下文) {
-  return {类型: '前进', 参数: 上下文.T数().getText()};
+  return {类型: '前进', 参数: parseInt(上下文.T数().getText())};
 };
 
 exports.定制访问器 = 定制访问器;
@@ -13143,7 +13145,7 @@ function 生成指令序列(语法树) {
     }
   } // TODO: 修改类型统一为'指令'
   else if (语法树.类型 == "前进" || 语法树.类型 == "转向") {
-    return [{名称: (语法树.类型 == "前进" ? 常量_指令名_前进 : 常量_指令名_转向), 参数: parseInt(语法树.参数)}];
+    return [{名称: (语法树.类型 == "前进" ? 常量_指令名_前进 : 常量_指令名_转向), 参数: 语法树.参数}];
   }
   return 指令序列;
 }
