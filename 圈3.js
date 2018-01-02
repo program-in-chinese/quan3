@@ -13028,6 +13028,8 @@ function 定制访问器 () {
 定制访问器.prototype = Object.create(圈3Visitor.prototype);
 定制访问器.prototype.constructor = 定制访问器;
 
+var 语法树 = {};
+
 定制访问器.prototype.visit程序 = function(上下文) {
   return {子节点: this.visit(上下文.声明())};
 };
@@ -13049,6 +13051,10 @@ function 定制访问器 () {
 定制访问器.prototype.visit前进 = function(上下文) {
   return {类型: '前进', 参数: parseInt(上下文.T数().getText())};
 };
+
+定制访问器.prototype.返回语法树 = function() {
+  return 语法树;
+}
 
 exports.定制访问器 = 定制访问器;
 },{"./圈3Visitor.js":51,"antlr4/index":42}],54:[function(require,module,exports){
@@ -13072,6 +13078,7 @@ const 生成指令序列 = require("./语法树处理").生成指令序列
   var 语法树 = 访问器.visit(语法分析器.程序());
   document.getElementById("调试输出").innerHTML += JSON.stringify(语法树);
   
+  // TODO: 添加测试后, 合并两个接口: 生成指令序列, 生成路径表
   var 指令序列 = 生成指令序列(语法树);
   //document.getElementById("调试输出").innerHTML += JSON.stringify(指令序列);
   
@@ -13096,6 +13103,7 @@ const 生成指令序列 = require("./语法树处理").生成指令序列
     
     序号 ++;
   }
+  return 访问器;
 }
 
 var 常量_指令名_前进 = "前进";

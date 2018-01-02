@@ -18,6 +18,7 @@ const 生成指令序列 = require("./语法树处理").生成指令序列
   var 语法树 = 访问器.visit(语法分析器.程序());
   document.getElementById("调试输出").innerHTML += JSON.stringify(语法树);
   
+  // TODO: 添加测试后, 合并两个接口: 生成指令序列, 生成路径表
   var 指令序列 = 生成指令序列(语法树);
   //document.getElementById("调试输出").innerHTML += JSON.stringify(指令序列);
   
@@ -42,6 +43,7 @@ const 生成指令序列 = require("./语法树处理").生成指令序列
     
     序号 ++;
   }
+  return 访问器;
 }
 
 var 常量_指令名_前进 = "前进";
