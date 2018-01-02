@@ -13039,6 +13039,8 @@ function 生成路径表(指令序列, 原点, 前进角度) {
 
 exports.生成指令序列 = 生成指令序列;
 exports.生成路径表 = 生成路径表;
+exports.常量_指令名_前进 = 常量_指令名_前进;
+exports.常量_指令名_转向 = 常量_指令名_转向;
 },{}],55:[function(require,module,exports){
 
 },{}]},{},[53]);
