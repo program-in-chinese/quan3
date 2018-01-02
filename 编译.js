@@ -17,7 +17,8 @@ const 定制访问器 = require("./定制访问器.js")
   document.getElementById("调试输出").innerHTML = "监听器1";
 */
   var 访问器 = new 定制访问器.定制访问器();
-  访问器.visit(语法分析器.程序());
+  var 语法树 = 访问器.visit(语法分析器.程序());
+  document.getElementById("调试输出").innerHTML += JSON.stringify(语法树);
   return 监听器;
 }
 
