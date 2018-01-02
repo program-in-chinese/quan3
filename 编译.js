@@ -17,13 +17,13 @@ const 生成指令序列 = require("./语法树处理").生成指令序列
 
   var 访问器 = new 定制访问器.定制访问器();
   var 语法树 = 访问器.visit(语法分析器.程序());
-  document.getElementById("调试输出").innerHTML += JSON.stringify(语法树);
+  //document.getElementById("调试输出").innerHTML += JSON.stringify(语法树);
   
   // TODO: 添加测试后, 合并两个接口: 生成指令序列, 生成路径表
   var 指令序列 = 生成指令序列(语法树);
-  //document.getElementById("调试输出").innerHTML += JSON.stringify(指令序列);
-  
   var 路径表 = 生成路径表(指令序列, 原点, 初始前进角度);
+
+  // TODO: 提取到二阶函数
   绘制 = function() {
     var 当前序号 = 序号;
     background(255, 255, 255);
