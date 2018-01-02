@@ -13075,7 +13075,7 @@ const 定制访问器 = require("./定制访问器.js")
   document.getElementById("调试输出").innerHTML += JSON.stringify(语法树);
   
   var 指令序列 = 生成指令序列(语法树);
-  document.getElementById("调试输出").innerHTML += JSON.stringify(指令序列);
+  //document.getElementById("调试输出").innerHTML += JSON.stringify(指令序列);
   
   var 路径表 = 生成路径表(指令序列, 初始前进角度);
   绘制 = function() {
@@ -13122,30 +13122,22 @@ function 重置状态() {
   当前循环的指令序列 = [];*/
 }
 
-// TODO: 重命名 - 语法树应为'节点'
-function 生成指令序列(语法树) {
+function 生成指令序列(节点) {
   var 指令序列 = [];
   // TODO: 根节点类型不应为空
-  if (!语法树.类型) {
-    var 声明节点 = 语法树.子节点;
+  if (!节点.类型) {
+    var 声明节点 = 节点.子节点;
     for (var i = 0; i < 声明节点.length; i++) {
-      var 子指令序列 = 生成指令序列(声明节点[i]);
-      for (var j = 0; j < 子指令序列.length; j++) {
-        指令序列.push(子指令序列[j]);
-      }
+      Array.prototype.push.apply(指令序列, 生成指令序列(声明节点[i]));
     }
-  } else if (语法树.类型 == "循环") {
+  } else if (节点.类型 == "循环") {
     var 指令序列 = [];
-    var 次数 = 语法树.次数;
-    var 子指令序列 = 生成指令序列({子节点: 语法树.子节点});
-    for (var i = 0; i < 次数; i++) {
-      for (var j = 0; j < 子指令序列.length; j++) {
-        指令序列.push(子指令序列[j]);
-      }
+    for (var i = 0; i < 节点.次数; i++) {
+      Array.prototype.push.apply(指令序列, 生成指令序列({子节点: 节点.子节点}));
     }
   } // TODO: 修改类型统一为'指令'
-  else if (语法树.类型 == "前进" || 语法树.类型 == "转向") {
-    return [{名称: (语法树.类型 == "前进" ? 常量_指令名_前进 : 常量_指令名_转向), 参数: 语法树.参数}];
+  else if (节点.类型 == "前进" || 节点.类型 == "转向") {
+    return [{名称: (节点.类型 == "前进" ? 常量_指令名_前进 : 常量_指令名_转向), 参数: 节点.参数}];
   }
   return 指令序列;
 }
