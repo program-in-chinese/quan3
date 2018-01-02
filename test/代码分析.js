@@ -1,6 +1,6 @@
 const 分析 = require("../编译.js").分析
-const 常量_指令名_前进 = require("../定制监听器.js").常量_指令名_前进
-const 常量_指令名_转向 = require("../定制监听器.js").常量_指令名_转向
+const 常量_指令名_前进 = require("../语法树处理.js").常量_指令名_前进
+const 常量_指令名_转向 = require("../语法树处理.js").常量_指令名_转向
 
 QUnit.test( "分析_前进1", function( assert ) {
   assert.deepEqual(
