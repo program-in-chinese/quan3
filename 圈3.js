@@ -448,7 +448,7 @@ var CharStreams = {
 
 exports.CharStreams = CharStreams;
 
-},{"./InputStream":6,"fs":55}],3:[function(require,module,exports){
+},{"./InputStream":6,"fs":56}],3:[function(require,module,exports){
 //
 /* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
@@ -652,7 +652,7 @@ FileStream.prototype.constructor = FileStream;
 
 exports.FileStream = FileStream;
 
-},{"./InputStream":6,"fs":55}],6:[function(require,module,exports){
+},{"./InputStream":6,"fs":56}],6:[function(require,module,exports){
 //
 /* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
@@ -13057,6 +13057,8 @@ const 圈3Lexer = require("./圈3Lexer.js")
 const 圈3Parser = require("./圈3Parser.js")
 const 定制监听器 = require("./定制监听器.js").定制监听器
 const 定制访问器 = require("./定制访问器.js")
+const 生成路径表 = require("./语法树处理").生成路径表
+const 生成指令序列 = require("./语法树处理").生成指令序列
 
 // TODO: 需改进-现为全局, 由于browserify
 分析 = function(代码) {
@@ -13066,10 +13068,6 @@ const 定制访问器 = require("./定制访问器.js")
   var 语法分析器 = new 圈3Parser.圈3Parser(词)
   语法分析器.buildParseTrees = true
 
-  var 监听器 = new 定制监听器();
-/*  antlr4.tree.ParseTreeWalker.DEFAULT.walk(监听器, 语法分析器.程序())
-  document.getElementById("调试输出").innerHTML = "监听器1";
-*/
   var 访问器 = new 定制访问器.定制访问器();
   var 语法树 = 访问器.visit(语法分析器.程序());
   document.getElementById("调试输出").innerHTML += JSON.stringify(语法树);
@@ -13098,8 +13096,6 @@ const 定制访问器 = require("./定制访问器.js")
     
     序号 ++;
   }
-
-  return 监听器;
 }
 
 var 常量_指令名_前进 = "前进";
@@ -13120,6 +13116,24 @@ function 重置状态() {
   /*指令序列 = [];
   循环次数 = 0;
   当前循环的指令序列 = [];*/
+}
+
+exports.分析 = 分析;
+},{"./圈3Lexer.js":48,"./圈3Parser.js":50,"./定制监听器.js":52,"./定制访问器.js":53,"./语法树处理":55,"antlr4/index":42}],55:[function(require,module,exports){
+var 常量_指令名_前进 = "前进";
+var 常量_指令名_转向 = "转向";
+
+var 序号 = 0;
+
+var 画布尺寸 = {x: 1000, y: 800};
+var 原点 = {x: 画布尺寸.x/2, y: 画布尺寸.y/2};
+var 初始前进角度 = 90; // 默认向上, 对应弧度: 90 * Math.PI / 180
+// 指令格式: 名称 (转向, 前进, 笔色等等); 参数 (转向角度--右为负,左为正; 前进长度-像素数等等);
+
+function 重置状态() {
+  序号 = 0;
+  原点 = {x: 画布尺寸.x/2, y: 画布尺寸.y/2};
+  前进角度 = 90;
 }
 
 function 生成指令序列(节点) {
@@ -13170,7 +13184,8 @@ function 生成路径表(指令序列, 前进角度) {
   return 路径表;
 }
 
-exports.分析 = 分析;
-},{"./圈3Lexer.js":48,"./圈3Parser.js":50,"./定制监听器.js":52,"./定制访问器.js":53,"antlr4/index":42}],55:[function(require,module,exports){
+exports.生成指令序列 = 生成指令序列;
+exports.生成路径表 = 生成路径表;
+},{}],56:[function(require,module,exports){
 
 },{}]},{},[54]);
