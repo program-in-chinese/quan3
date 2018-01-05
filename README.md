@@ -6,6 +6,8 @@
 
 [JavaScript实现ZLOGO子集: 测试用例](https://zhuanlan.zhihu.com/p/31870155)
 
+[JavaScript实现ZLOGO: 用语法树实现多层循环](https://zhuanlan.zhihu.com/p/32571516)
+
 测试:
 
 安装[QUnit](http://qunitjs.com/)后运行:
