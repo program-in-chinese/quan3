@@ -396,7 +396,7 @@ var fs = isNodeJs ? require("fs") : null;
 var CharStreams = {
   // Creates an InputStream from a string.
   fromString: function(str) {
-    return InputStream(str, true);
+    return new InputStream(str, true);
   },
 
   // Asynchronously creates an InputStream from a blob given the
@@ -408,7 +408,7 @@ var CharStreams = {
   fromBlob: function(blob, encoding, onLoad, onError) {
     var reader = FileReader();
     reader.onload = function(e) {
-      var is = InputStream(e.target.result, true);
+      var is = new InputStream(e.target.result, true);
       onLoad(is);
     };
     reader.onerror = onError;
@@ -419,7 +419,7 @@ var CharStreams = {
   // encoding of the bytes in that buffer (defaults to 'utf8' if
   // encoding is null).
   fromBuffer: function(buffer, encoding) {
-    return InputStream(buffer.toString(encoding), true);
+    return new InputStream(buffer.toString(encoding), true);
   },
 
   // Asynchronously creates an InputStream from a file on disk given
@@ -431,7 +431,7 @@ var CharStreams = {
     fs.readFile(path, encoding, function(err, data) {
       var is = null;
       if (data !== null) {
-        is = InputStream(data, true);
+        is = new InputStream(data, true);
       }
       callback(err, is);
     });
@@ -442,7 +442,7 @@ var CharStreams = {
   // 'utf8' if encoding is null).
   fromPathSync: function(path, encoding) {
     var data = fs.readFileSync(path, encoding);
-    return InputStream(data, true);
+    return new InputStream(data, true);
   }
 };
 
@@ -3321,7 +3321,7 @@ Recognizer.ruleIndexMapCache = {};
 
 
 Recognizer.prototype.checkVersion = function(toolVersion) {
-    var runtimeVersion = "4.7";
+    var runtimeVersion = "4.7.1";
     if (runtimeVersion!==toolVersion) {
         console.log("ANTLR runtime and generated code versions disagree: "+runtimeVersion+"!="+toolVersion);
     }
@@ -4162,11 +4162,11 @@ DoubleDict.prototype.set = function (a, b, o) {
 
 
 function escapeWhitespace(s, escapeSpaces) {
-    s = s.replace("\t", "\\t");
-    s = s.replace("\n", "\\n");
-    s = s.replace("\r", "\\r");
+    s = s.replace(/\t/g, "\\t")
+         .replace(/\n/g, "\\n")
+         .replace(/\r/g, "\\r");
     if (escapeSpaces) {
-        s = s.replace(" ", "\u00B7");
+        s = s.replace(/ /g, "\u00B7");
     }
     return s;
 }
@@ -4205,6 +4205,7 @@ exports.escapeWhitespace = escapeWhitespace;
 exports.arrayToString = arrayToString;
 exports.titleCase = titleCase;
 exports.equalArrays = equalArrays;
+
 },{}],17:[function(require,module,exports){
 /* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
@@ -4950,7 +4951,7 @@ ATNDeserializer.prototype.deserialize = function(data) {
 ATNDeserializer.prototype.reset = function(data) {
 	var adjust = function(c) {
         var v = c.charCodeAt(0);
-        return v>1  ? v-2 : -1;
+        return v>1  ? v-2 : v + 65533;
 	};
     var temp = data.split("").map(adjust);
     // don't adjust the first value since that's the version number
@@ -10958,7 +10959,7 @@ DefaultErrorStrategy.prototype.reportNoViableAlternative = function(recognizer, 
         if (e.startToken.type===Token.EOF) {
             input = "<EOF>";
         } else {
-            input = tokens.getText(new Interval(e.startToken, e.offendingToken));
+            input = tokens.getText(new Interval(e.startToken.tokenIndex, e.offendingToken.tokenIndex));
         }
     } else {
         input = "<unknown input>";
@@ -11445,6 +11446,7 @@ BailErrorStrategy.prototype.sync = function(recognizer) {
 
 exports.BailErrorStrategy = BailErrorStrategy;
 exports.DefaultErrorStrategy = DefaultErrorStrategy;
+
 },{"./../IntervalSet":7,"./../Token":15,"./../atn/ATNState":23,"./Errors":40}],40:[function(require,module,exports){
 /* Copyright (c) 2012-2017 The ANTLR Project. All rights reserved.
  * Use of this file is governed by the BSD 3-clause license that
@@ -12950,23 +12952,25 @@ const 生成指令序列 = require("./语法树处理").生成指令序列
   // TODO: 提取到二阶函数
   绘制 = function() {
     var 当前序号 = 序号;
+    const 速度 = 20;
     background(255, 255, 255);
+    //frameRate(120);
 
     for (var i = 0; i < 路径表.length; i++ ) {
       var 段 = 路径表[i];
       var 起点 = 段.起点;
       var 终点 = 段.终点;
       var 距离 = 段.长度;
-      if (当前序号 < 距离) {
-        line(起点.x, 起点.y, 起点.x + (终点.x - 起点.x) * 当前序号 / 距离, 起点.y + (终点.y - 起点.y) * 当前序号 / 距离);
+      if (当前序号 < 距离 / 速度) {
+        line(起点.x, 起点.y, 起点.x + (终点.x - 起点.x) * 当前序号 * 速度 / 距离, 起点.y + (终点.y - 起点.y) * 当前序号 * 速度 / 距离);
         break;
       } else {
         line(起点.x, 起点.y, 终点.x, 终点.y);
-        当前序号 = 当前序号 - 段.长度;
+        当前序号 = 当前序号 - 段.长度 / 速度;
       }
     }
     
-    序号 ++;
+    序号 += 速度;
   }
   return 访问器;
 }
