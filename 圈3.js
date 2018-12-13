@@ -12966,6 +12966,7 @@ const 生成指令序列 = require("./语法树处理").生成指令序列
         var 当前x = 起点.x + (终点.x - 起点.x) * 当前序号 * 速度 / 距离;
         var 当前y = 起点.y + (终点.y - 起点.y) * 当前序号 * 速度 / 距离;
         指示方向图.position(当前x + 240, 当前y);
+        指示方向图.style("transform", "rotate(" + 45 + "deg)")
         line(起点.x, 起点.y, 当前x, 当前y);
         break;
       } else {
