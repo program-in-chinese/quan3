@@ -8,6 +8,8 @@
 
 [JavaScript实现ZLOGO: 用语法树实现多层循环](https://zhuanlan.zhihu.com/p/32571516)
 
+[JavaScript实现ZLOGO: 前进方向和速度](https://zhuanlan.zhihu.com/p/52434775)
+
 圈3.js由如下生成:
 ```
 $ browserify 编译.js > 圈3.js
