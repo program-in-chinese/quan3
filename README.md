@@ -8,6 +8,10 @@
 
 [JavaScript实现ZLOGO: 用语法树实现多层循环](https://zhuanlan.zhihu.com/p/32571516)
 
+圈3.js由如下生成:
+```
+$ browserify 编译.js > 圈3.js
+```
 测试:
 
 安装[QUnit](http://qunitjs.com/)后运行:
