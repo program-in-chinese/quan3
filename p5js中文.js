@@ -185,3 +185,7 @@ function 新画布(宽, 高) {
 function 新画布(宽, 高, 模式) {
 	return createCanvas(宽, 高, 模式);
 }
+
+function 清理() {
+	clear();
+}
