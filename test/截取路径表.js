@@ -1,5 +1,6 @@
 const 截取路径表 = require("../语法树处理.js").截取路径表
 const 截取路径 = require("../语法树处理.js").截取路径
+const 按步进拆分路径表 = require("../语法树处理.js").按步进拆分路径表
 
 const 路点0 = {x: 500, y: 400}
 const 路点1 = {x: 500, y: 350}
@@ -190,5 +191,14 @@ QUnit.test( "截取全路径表末", function( assert ) {
       ],
       剩余部分: []
     },
+    "通过!" );
+});
+
+QUnit.test( "按步进拆分路径表4段", function( assert ) {
+  assert.deepEqual(
+    按步进拆分路径表(全路径表, 50),
+    [
+      [向上段], [向左段], [向下段], [向右段]
+    ],
     "通过!" );
 });

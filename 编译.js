@@ -4,6 +4,7 @@ const 圈3Parser = require("./圈3Parser.js")
 const 定制访问器 = require("./定制访问器.js")
 const 生成路径表 = require("./语法树处理").生成路径表
 const 截取路径表 = require("./语法树处理").截取路径表
+const 按步进拆分路径表 = require("./语法树处理").按步进拆分路径表
 const 生成指令序列 = require("./语法树处理").生成指令序列
 
 var 指示方向图 = null;
@@ -38,19 +39,30 @@ var 图标位置y位移 = -16;
     指示方向图.size(36, 34);
   }
 */
+  const 速度 = parseInt(当前速度);
+  var 计时开始 = new Date();
+  var 所有段 = 按步进拆分路径表(路径表, 速度);
+  document.getElementById("调试输出").innerHTML += ((new Date()) - 计时开始) + "ms ";
+  
   // TODO: 提取到二阶函数
   绘制 = function() {
-    var 此帧行进长度 = 行进总距离;
-    const 速度 = parseInt(当前速度);
-
     // TODO: 获取剩余路径表, 避免从头开始截取
-    var 拆分路径 = 截取路径表(路径表, 此帧行进长度, 此帧行进长度 + 速度);
-    for (var i = 0; i < 拆分路径.截取部分.length; i++ ) {
-      var 段 = 拆分路径.截取部分[i];
+    if (帧序号 >= 所有段.length) {
+      return;
+    }
+    for (var i = 0; i < 所有段[帧序号].length; i++ ) {
+      var 段 = 所有段[帧序号][i];
       var 起点 = 段.起点;
       var 终点 = 段.终点;
       line(起点.x, 起点.y, 终点.x, 终点.y);
     }
+    
+    /*for (var i = 0; i < 拆分路径.截取部分.length; i++ ) {
+      var 段 = 拆分路径.截取部分[i];
+      var 起点 = 段.起点;
+      var 终点 = 段.终点;
+      line(起点.x, 起点.y, 终点.x, 终点.y);
+    }*/
     /*
     for (var i = 0; i < 路径表.length; i++ ) {
       if (此帧行进长度 <= 0) {
@@ -83,12 +95,12 @@ var 图标位置y位移 = -16;
         
     }*/
     
-    行进总距离 += 速度;
+    帧序号 += 1;
   }
   return 访问器;
 }
 
-var 行进总距离 = 0;
+var 帧序号 = 0;
 
 var 画布尺寸 = {x: 800, y: 600};
 var 原点 = {x: 画布尺寸.x/2, y: 画布尺寸.y/2};
@@ -96,7 +108,7 @@ var 初始前进角度 = 90; // 默认向上, 对应弧度: 90 * Math.PI / 180
 
 function 重置状态() {
   清理();
-  行进总距离 = 0;
+  帧序号 = 0;
   原点 = {x: 画布尺寸.x/2, y: 画布尺寸.y/2};
   前进角度 = 90;
 }
