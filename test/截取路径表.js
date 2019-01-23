@@ -44,6 +44,16 @@ QUnit.test( "截取路径3", function( assert ) {
     "通过!" );
 });
 
+QUnit.test( "截取路径_超出末端", function( assert ) {
+  assert.deepEqual(
+    截取路径(向上段, 0, 60),
+    {
+      截取部分: [向上段],
+      剩余部分: []
+    },
+    "通过!" );
+});
+
 QUnit.test( "截取单路径表1", function( assert ) {
   assert.deepEqual(
     截取路径表([向上段], 0, 10),
