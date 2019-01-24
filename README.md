@@ -1,3 +1,5 @@
+![2019-01-23-logo圆包络]({{ "/演示/2019-01-23-logo圆包络.gif" | absolute_url }})
+
 介绍:
 
 - [JavaScript实现ZLOGO子集: 前进+转向](https://zhuanlan.zhihu.com/p/31748014)
