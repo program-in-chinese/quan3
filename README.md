@@ -12,11 +12,18 @@
 
 - [JavaScript实现ZLOGO: 界面改进与速度可调](https://zhuanlan.zhihu.com/p/55359648)
 
+- [JavaScript实现ZLOGO: 性能改进](https://zhuanlan.zhihu.com/p/55626846)
+
+由语法定义文件生成Listener, Visitor, Lexer等文件:
+```
+$ java -cp "antlr-4.7-complete.jar:$CLASSPATH" org.antlr.v4.Tool -Dlanguage=JavaScript -visitor 圈3.g4
+```
+
 圈3.js由如下生成:
 ```
 $ browserify 编译.js > 圈3.js
 ```
-测试:
+提交前请通过所有测试:
 
 安装[QUnit](http://qunitjs.com/)后运行:
 ```
