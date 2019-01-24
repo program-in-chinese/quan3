@@ -2,6 +2,8 @@ const 分析 = require("../编译.js").分析
 const 常量_指令名_前进 = require("../语法树处理.js").常量_指令名_前进
 const 常量_指令名_转向 = require("../语法树处理.js").常量_指令名_转向
 
+// !!注意: 下面测试只可在'分析'函数中没有DOM相关函数(如document.getElementById,
+// p5js函数等)调用时可以通过.
 QUnit.test( "分析_前进1", function( assert ) {
   assert.deepEqual(
     分析("开始\n前进50\n结束\n").返回语法树(),
