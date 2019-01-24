@@ -111,19 +111,7 @@ QUnit.test( "截取路径表3", function( assert ) {
 
 QUnit.test( "截取路径表4", function( assert ) {
   assert.deepEqual(
-    截取路径表(路径表, 90, 100),
-    {
-      截取部分: [
-        {起点: {x: 460, y: 350}, 终点: 路点2, 长度: 10, 前进角度: 180}
-      ],
-      剩余部分: []
-    },
-    "通过!" );
-});
-
-QUnit.test( "重复截取路径表4", function( assert ) {
-  assert.deepEqual(
-    截取路径表(路径表, 90, 100),
+    截取路径表([向上段, 向左段], 90, 100),
     {
       截取部分: [
         {起点: {x: 460, y: 350}, 终点: 路点2, 长度: 10, 前进角度: 180}
@@ -135,7 +123,7 @@ QUnit.test( "重复截取路径表4", function( assert ) {
 
 QUnit.test( "截取全路径表开头", function( assert ) {
   assert.deepEqual(
-    截取路径表(全路径表, 0, 10),
+    截取路径表([向上段, 向左段, 向下段, 向右段], 0, 10),
     {
       截取部分: [
         {起点: 路点0, 终点: {x: 500, y: 390}, 长度: 10, 前进角度: 90}
@@ -150,7 +138,7 @@ QUnit.test( "截取全路径表开头", function( assert ) {
 
 QUnit.test( "截取全路径表向左", function( assert ) {
   assert.deepEqual(
-    截取路径表(全路径表, 50, 60),
+    截取路径表([向上段, 向左段, 向下段, 向右段], 50, 60),
     {
       截取部分: [
         {起点: 路点1, 终点: {x: 490, y: 350}, 长度: 10, 前进角度: 180}
@@ -165,7 +153,7 @@ QUnit.test( "截取全路径表向左", function( assert ) {
 
 QUnit.test( "截取全路径表向下", function( assert ) {
   assert.deepEqual(
-    截取路径表(全路径表, 100, 110),
+    截取路径表([向上段, 向左段, 向下段, 向右段], 100, 110),
     {
       截取部分: [
         {起点: 路点2, 终点: {x: 450, y: 360}, 长度: 10, 前进角度: 270}
@@ -180,7 +168,7 @@ QUnit.test( "截取全路径表向下", function( assert ) {
 
 QUnit.test( "截取全路径表向右", function( assert ) {
   assert.deepEqual(
-    截取路径表(全路径表, 150, 160),
+    截取路径表([向上段, 向左段, 向下段, 向右段], 150, 160),
     {
       截取部分: [
         {起点: 路点3, 终点: {x: 460, y: 400}, 长度: 10, 前进角度: 360}
@@ -194,7 +182,7 @@ QUnit.test( "截取全路径表向右", function( assert ) {
 
 QUnit.test( "截取全路径表末", function( assert ) {
   assert.deepEqual(
-    截取路径表(全路径表, 198, 200),
+    截取路径表([向上段, 向左段, 向下段, 向右段], 198, 200),
     {
       截取部分: [
         {起点: {x: 498, y: 400}, 终点: 路点0, 长度: 2, 前进角度: 360}
@@ -206,7 +194,7 @@ QUnit.test( "截取全路径表末", function( assert ) {
 
 QUnit.test( "按步进拆分路径表4段", function( assert ) {
   assert.deepEqual(
-    按步进拆分路径表(全路径表, 50),
+    按步进拆分路径表([向上段, 向左段, 向下段, 向右段], 50),
     [
       [向上段], [向左段], [向下段], [向右段]
     ],
