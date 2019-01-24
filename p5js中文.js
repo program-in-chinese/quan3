@@ -29,6 +29,10 @@ function draw() {
 function 绘制() {};
 
 // 二维基本元素
+function 线段(起点x, 起点y, 终点x, 终点y) {
+	line(起点x, 起点y, 终点x, 终点y);
+}
+
 function 长方形(x位置, y位置, 宽, 高) {
 	rect(x位置, y位置, 宽, 高);
 }
