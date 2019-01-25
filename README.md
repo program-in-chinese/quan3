@@ -1,4 +1,4 @@
-![2019-01-23-logo圆包络]({{ "/演示/2019-01-23-logo圆包络.gif" | absolute_url }})
+![2019-01-23-logo圆包络](https://github.com/program-in-chinese/quan3/blob/master/%E6%BC%94%E7%A4%BA/2019-01-23-logo%E5%9C%86%E5%8C%85%E7%BB%9C.gif)
 
 介绍:
 
